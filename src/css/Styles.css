@@ -1,0 +1,43 @@
+#btn1 {
+    -fx-font-size: 14;
+    -fx-background-color: #222222;
+    -fx-text-fill: white;
+}
+
+#btn1:hover {
+    -fx-font-size: 14;
+    -fx-background-color: FFFF60;
+}
+
+#text_ID {
+    -fx-font-size: 14;
+    -fx-background-color: "333333";
+    -fx-text-fill: white;
+}
+
+#textArea_ID {
+    -fx-font-size: 14;
+    -fx-background-image: url("../img/Back2.jpg");
+    -fx-background-repeat: repeat;
+    -fx-background-position: center center;
+    -fx-text-fill: "333333";
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+#textArea_ID.viewport {
+    -fx-background-color: transparent;
+}
+#textArea_ID.content {
+    -fx-background-color: transparent;
+}
