@@ -8,7 +8,7 @@
 <?import java.net.URL?>
 <?scenebuilder-stylesheet /css/Style.css?>
 
-<VBox fx:controller="sample.Controller" xmlns:fx="http://javafx.com/fxml" alignment="center">
+<VBox fx:controller="csr.Client.Controller" xmlns:fx="http://javafx.com/fxml" alignment="center">
 
     <stylesheets> <URL value = "@/css/Styles.css"/> </stylesheets>
 
