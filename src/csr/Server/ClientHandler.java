@@ -1,5 +1,8 @@
 package csr.Server;
 
+import csr.NoClientException;
+import javafx.application.Platform;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -26,38 +29,16 @@ public class ClientHandler {
                         while (true) {
                             String str = dis.readUTF();
                             if(str.equalsIgnoreCase("/end")) {
+                                dis.close();
+                                dos.close();
+                                socket.close();
                                 break;
                             }
                             server.broadcastMsg(str);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
-                    } finally {
-                        try {
-                            dis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        try {
-                            dos.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        try {
-                            socket.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
                     }
-                    try {
-                        dis.close();
-                        dos.flush();
-                        dos.close();
-                        socket.close();
-                    } catch (IOException io) {
-                        io.printStackTrace();
-                    }
-
                 }
             }).start();
         } catch (IOException e) {
@@ -65,11 +46,11 @@ public class ClientHandler {
         }
     }
 
-    public void sendMsg(String msg) {
+    public void sendMsg(String msg) throws NoClientException {
         try {
             dos.writeUTF(msg);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new NoClientException("Больше нет такого адреса");
         }
     }
 }

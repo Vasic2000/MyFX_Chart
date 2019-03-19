@@ -1,6 +1,5 @@
 package csr.Client;
 
-import csr.NoClientException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -49,6 +48,7 @@ public class Controller implements Initializable {
                     try {
                         while (true) {
                             String str = dis.readUTF();
+                            if(!str.isEmpty())
                             textArea_ID.appendText(df.format(new Date()) + " : " + str + "\n");
                         }
                     } catch (IOException e) {
@@ -83,7 +83,7 @@ public class Controller implements Initializable {
             text_ID.clear();
             text_ID.requestFocus();
         } catch (IOException e) {
-            throw new NoClientException();
+            e.printStackTrace();
         }
     }
 }

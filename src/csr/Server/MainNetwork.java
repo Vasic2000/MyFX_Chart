@@ -1,8 +1,11 @@
 package csr.Server;
 
+import csr.NoClientException;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Iterator;
 import java.util.Vector;
 
 public class MainNetwork {
@@ -31,8 +34,15 @@ public class MainNetwork {
     }
 
     public void broadcastMsg(String msg) {
-        for (ClientHandler o : clients) {
-            o.sendMsg(msg);
-        }
+            for (ClientHandler o : clients) {
+                try {
+                    o.sendMsg(msg);
+                } catch (NoClientException no) {
+                    for (Iterator<ClientHandler> iterator = clients.iterator(); iterator.hasNext(); )
+                        if (iterator.next().equals(o))
+                            iterator.remove();
+                }
+            }
+
     }
 }
