@@ -1,5 +1,6 @@
 package csr.Client;
 
+import csr.NoClientException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,48 +30,37 @@ public class Controller implements Initializable {
     Button btn1;
 
     Socket socket;
-    DataInputStream in;
-    DataOutputStream out;
+    DataInputStream dis;
+    DataOutputStream dos;
 
     final String IP_ADRESS = "localhost";
     final int PORT = 8189;
-
-
-    public void sendMessage() {
-        if(!text_ID.getText().isEmpty()) {
-            textArea_ID.appendText(df.format(new Date()) + " : " + text_ID.getText() + "\n");
-            text_ID.clear();
-            text_ID.requestFocus();
-        }
-    }
-
-    public void sendMsg() {
-        try {
-            out.writeUTF(text_ID.getText());
-            text_ID.clear();
-            text_ID.requestFocus();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             socket = new Socket(IP_ADRESS, PORT);
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
+            dis = new DataInputStream(socket.getInputStream());
+            dos = new DataOutputStream(socket.getOutputStream());
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
                         while (true) {
-                            String str = in.readUTF();
-                            text_ID.appendText(str + "\n");
+                            String str = dis.readUTF();
+                            textArea_ID.appendText(df.format(new Date()) + " : " + str + "\n");
                         }
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        try {
+                            dis.close();
+                            dos.flush();
+                            dos.close();
+                            socket.close();
+                        } catch (IOException io) {
+                            io.printStackTrace();
+                        }
+                        //e.printStackTrace();
                     } finally {
                         try {
                             socket.close();
@@ -83,6 +73,17 @@ public class Controller implements Initializable {
 
         } catch (IOException io) {
             io.printStackTrace();
+        }
+    }
+
+
+    public void sendMsg() {
+        try {
+            dos.writeUTF(text_ID.getText());
+            text_ID.clear();
+            text_ID.requestFocus();
+        } catch (IOException e) {
+            throw new NoClientException();
         }
     }
 }
