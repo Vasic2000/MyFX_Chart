@@ -34,15 +34,15 @@ public class MainNetwork {
     }
 
     public void broadcastMsg(String msg) {
-            for (ClientHandler o : clients) {
-                try {
-                    o.sendMsg(msg);
-                } catch (NoClientException no) {
-                    for (Iterator<ClientHandler> iterator = clients.iterator(); iterator.hasNext(); )
-                        if (iterator.next().equals(o))
-                            iterator.remove();
-                }
+        for (ClientHandler o : clients) {
+            try {
+                o.sendMsg(msg);
+            } catch (NoClientException no) {
+                for (Iterator<ClientHandler> iterator = clients.iterator(); iterator.hasNext(); )
+                    if (iterator.next().equals(o))
+                        iterator.remove();
             }
+        }
 
     }
 }

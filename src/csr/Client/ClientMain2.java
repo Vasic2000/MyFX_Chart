@@ -1,17 +1,17 @@
 package csr.Client;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+        import javafx.application.Application;
+        import javafx.fxml.FXMLLoader;
+        import javafx.scene.Parent;
+        import javafx.scene.Scene;
+        import javafx.stage.Stage;
 
-public class ClientMain extends Application implements Cloneable {
+public class ClientMain2 extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MyFXClient.fxml"));
-        primaryStage.setTitle("Chat 2k19");
+        primaryStage.setTitle("Chat 2k20");
         Scene scene = new Scene(root, 275, 375);
         primaryStage.setScene(scene);
         primaryStage.show();

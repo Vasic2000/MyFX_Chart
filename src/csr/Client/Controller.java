@@ -49,7 +49,7 @@ public class Controller implements Initializable {
                         while (true) {
                             String str = dis.readUTF();
                             if(!str.isEmpty())
-                            textArea_ID.appendText(df.format(new Date()) + " : " + str + "\n");
+                                textArea_ID.appendText(df.format(new Date()) + " : " + str + "\n");
                         }
                     } catch (IOException e) {
                         try {
