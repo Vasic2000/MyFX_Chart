@@ -8,14 +8,14 @@
 <?import java.net.URL?>
 <?scenebuilder-stylesheet /css/Style.css?>
 
-<VBox fx:controller="sample.Controller" xmlns:fx="http://javafx.com/fxml" alignment="center">
+<VBox fx:controller="csr.Client.Controller" xmlns:fx="http://javafx.com/fxml" alignment="center">
 
     <stylesheets> <URL value = "@/css/Styles.css"/> </stylesheets>
 
     <TextArea fx:id = "textArea_ID" editable="false" VBox.vgrow="ALWAYS"/>
 
     <HBox>
-        <TextField fx:id = "text_ID" onAction="#sendMessage" HBox.hgrow="ALWAYS" promptText="Введите сообщение..."/>
-        <Button text = "Send" fx:id = "btn1" onAction="#sendMessage"/>
+        <TextField fx:id = "text_ID" onAction="#sendMsg" HBox.hgrow="ALWAYS" promptText="Введите сообщение..."/>
+        <Button text = "Send" fx:id = "btn1" onAction="#sendMsg"/>
     </HBox>
 </VBox>
