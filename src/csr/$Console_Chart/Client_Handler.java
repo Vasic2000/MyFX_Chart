@@ -7,7 +7,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ClientHandler {
+public class Client_Handler {
     DateFormat df = new SimpleDateFormat("hh:mm:ss");
 
     private ServerSocket server;
@@ -15,7 +15,7 @@ public class ClientHandler {
     private DataOutputStream out;
     private DataInputStream in;
 
-    public ClientHandler(ServerSocket server, Socket socket) {
+    public Client_Handler(ServerSocket server, Socket socket) {
         try {
             this.server = server;
             this.socket = socket;
@@ -56,9 +56,7 @@ public class ClientHandler {
                         String str = br.readLine();
                         out.writeUTF(str);
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                } catch (IOException e) {}
             }
         }).start();
     }

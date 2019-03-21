@@ -15,7 +15,7 @@ public class Server {
         while (true) {
             socket = server.accept();
             System.out.println("Клиент " + socket.toString() + " подключился");
-            new ClientHandler(server, socket);
+            new Client_Handler(server, socket);
         }
     }
 
