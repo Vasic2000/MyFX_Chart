@@ -1,7 +1,6 @@
 package csr.Server;
 
 import csr.NoClientException;
-import javafx.application.Platform;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
