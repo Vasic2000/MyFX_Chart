@@ -59,7 +59,9 @@ public class Controller {
                         dos.flush();
                         dos.close();
                         socket.close();
-                    } catch (IOException io) {}
+                    } catch (IOException io) {
+                        io.printStackTrace();
+                    }
                 }
             }
         }).start();

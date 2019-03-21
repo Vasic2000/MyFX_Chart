@@ -45,19 +45,11 @@ public class Client_Handler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                BufferedReader br = new BufferedReader(new InputStreamReader(new DataInputStream(System.in)));
-                try {
-                    while (true) {
-                        String str = br.readLine();
-                        out.writeUTF(str);
-                    }
-                } catch (IOException e) {}
-            }
-        }).start();
+    public void sendMsg(String msg) {
+        try {
+            out.writeUTF(msg);
+        } catch (IOException e) {}
     }
 }
