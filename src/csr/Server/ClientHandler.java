@@ -16,6 +16,11 @@ public class ClientHandler {
     private Socket socket;
     private DataOutputStream dos;
     private DataInputStream dis;
+
+    public String getNick() {
+        return nick;
+    }
+
     private String nick;
 
     public ClientHandler(MainNetwork server, Socket socket) {
@@ -52,7 +57,13 @@ public class ClientHandler {
                                 dos.writeUTF("/serverclosed");
                                 break;
                             }
-                            server.broadcastMsg(db.format(new Date()) + " <" + nick +  "> : " + str);
+
+                            if (str.startsWith("/w")) {
+                                String [] tokens = str.split(" ");
+                                String message = str.substring(tokens[1].length() + 4);
+                                server.sendDirectMsg(tokens[1], nick, db.format(new Date()) + " <" + nick +  "> : " + message);
+                            } else
+                                server.broadcastMsg(db.format(new Date()) + " <" + nick +  "> : " + str);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();

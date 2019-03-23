@@ -60,4 +60,10 @@ public class MainNetwork {
                 o.sendMsg(msg);
         }
     }
+
+    public void sendDirectMsg(String nickTo, String nickFrom, String msg) {
+        for (ClientHandler o : clients) {
+            if((o.getNick().equals(nickTo)) || (o.getNick().equals(nickFrom))) o.sendMsg(msg);
+        }
+    }
 }
