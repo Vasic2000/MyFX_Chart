@@ -12,8 +12,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Date;
-
 
 public class Controller {
 
@@ -119,49 +117,6 @@ public class Controller {
             e.printStackTrace();
         }
     }
-
-//
-//    @Override
-//    public void initialize(URL location, ResourceBundle resources) {
-//        try {
-//            socket = new Socket(IP_ADRESS, PORT);
-//            dis = new DataInputStream(socket.getInputStream());
-//            dos = new DataOutputStream(socket.getOutputStream());
-//
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        while (true) {
-//                            String str = dis.readUTF();
-//                            if(!str.isEmpty())
-//                                textArea_ID.appendText(df.format(new Date()) + " : " + str + "\n");
-//                        }
-//                    } catch (IOException e) {
-//                        try {
-//                            dis.close();
-//                            dos.flush();
-//                            dos.close();
-//                            socket.close();
-//                        } catch (IOException io) {
-//                            io.printStackTrace();
-//                        }
-//                        //e.printStackTrace();
-//                    } finally {
-//                        try {
-//                            socket.close();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//            }).start();
-//
-//        } catch (IOException io) {
-//            io.printStackTrace();
-//        }
-//    }
-
 
     public void sendMsg() {
         try {

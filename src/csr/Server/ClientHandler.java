@@ -40,18 +40,22 @@ public class ClientHandler {
                             if (str.startsWith("/auth")) {
                                 String[] tokens = str.split(" ");
                                 String newNick = AuthService.getNickByLoginAndPass(tokens[1], tokens[2]);
-                                if (newNick != null) {
+                                if ((newNick != null) && !server.isExist(newNick)) {
                                     sendMsg("/authok");
                                     nick = newNick;
                                     server.subscribe(ClientHandler.this);
                                     break;
                                 } else {
-                                    sendMsg("Неверный логин/пароль");
+                                    if(server.isExist(newNick))
+                                        sendMsg("Логин/пароль уже занят");
+                                    else
+                                        sendMsg("Неверный логин/пароль");
                                 }
                             }
                         }
 
                         while (true) {
+
                             String str = dis.readUTF();
                             if (str.equals("/end")) {
                                 dos.writeUTF("/serverclosed");

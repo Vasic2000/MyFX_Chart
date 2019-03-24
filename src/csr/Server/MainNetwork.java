@@ -47,6 +47,13 @@ public class MainNetwork {
     }
 
 
+    public boolean isExist(String NIK) {
+        for (ClientHandler o : clients) {
+            if(NIK.equals(o.getNick())) return true;
+        }
+        return false;
+    }
+
     public void subscribe(ClientHandler client) {
         clients.add(client);
     }
