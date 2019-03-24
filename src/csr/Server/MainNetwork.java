@@ -73,4 +73,14 @@ public class MainNetwork {
             if((o.getNick().equals(nickTo)) || (o.getNick().equals(nickFrom))) o.sendMsg(msg);
         }
     }
+
+
+    public void unsubscribeByNick(String repeat) {
+        for (ClientHandler o : clients) {
+            if(o.getNick().equals(repeat))
+                o.sendMsg("/serverclose");
+        }
+    }
+
+
 }

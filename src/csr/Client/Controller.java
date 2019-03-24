@@ -109,6 +109,7 @@ public class Controller {
                             e.printStackTrace();
                         }
                         setAuthorized(false);
+                        closeApp();
                     }
                 }
             }).start();
@@ -126,5 +127,14 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+        public void closeApp() {
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
     }
 }
